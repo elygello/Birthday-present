@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+   <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>For My Love</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="screen-lock" class="screen active">
+        <div class="container">
+            <h1>🔐 Enter the Code</h1>
+            <input type="number" id="code-input" inputmode="numeric" placeholder="0000">
+            <button onclick="checkCode()">Open</button>
+            <p id="hint" class="error-text"></p>
+        </div>
+    </div>
+
+    <div id="screen-birthday" class="screen">
+        <div class="container">
+            <h1 class="fancy-text">Happy Birthday my Love</h1>
+            <button onclick="showNext('screen-query')">click here</button>
+        </div>
+    </div>
+
+    <div id="screen-query" class="screen">
+        <div class="container">
+            <h2>Want the last gift?</h2>
+            <div class="button-group">
+                <button onclick="showNext('screen-main')">Yes</button>
+                <button onclick="sayPlease()">No</button>
+            </div>
+            <p id="please-text" class="error-text"></p>
+            <button id="try-again-btn" style="display:none;" onclick="resetQuery()">try again</button>
+        </div>
+    </div>
+
+    <div id="screen-main" class="screen">
+        <div class="icon-grid">
+            <div class="icon-card" onclick="showNext('section-pics')">📸<p>Fotos</p></div>
+            <div class="icon-card" onclick="showNext('section-music')">🎵<p>Music</p></div>
+            <div class="icon-card" onclick="showNext('section-flowers')">🪻<p>Blumen</p></div>
+            <div class="icon-card" onclick="showNext('section-letter')">✉️<p>Brief</p></div>
+        </div>
+    </div>
+
+    <div id="section-pics" class="screen">
+        <div class="container scrollable">
+            <button class="back-btn" onclick="showNext('screen-main')">← Zurück</button>
+            <h2 class="fancy-text">My favourite pics</h2>
+            <img src="bild1.jpg" class="gallery-img">
+            <img src="bild2.jpg" class="gallery-img">
+            <img src="bild3.jpg" class="gallery-img">
+        </div>
+    </div>
+
+    <div id="section-music" class="screen">
+        <div class="container scrollable">
+            <button class="back-btn" onclick="showNext('screen-main')">← Zurück</button>
+            <h2 class="fancy-text">Songs for you</h2>
+            <div class="spotify-container">
+                <iframe src="https://open.spotify.com/embed/track/5y2ijHECwFYWqcAHKTZgzD?utm_source=generator" width="100%" height="152" frameBorder="0"></iframe>
+                <iframe src="https://open.spotify.com/embed/track/6TYFcqqQVQPb3YsgfRhvqs?utm_source=generator" width="100%" height="152" frameBorder="0"></iframe>
+                <iframe src="https://open.spotify.com/embed/track/2PPN1HFpVotjq7oJIqQbnx?utm_source=generator" width="100%" height="152" frameBorder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="section-flowers" class="screen">
+        <div class="container">
+            <button class="back-btn" onclick="showNext('screen-main')">← Zurück</button>
+            <h2 class="fancy-text">Flowers for you</h2>
+            <img src="katze.gif" class="cat-gif">
+            <div class="flower-display">💙🪻💙</div>
+            <p>Alle guten Dinge sind Jana!</p>
+        </div>
+    </div>
+
+    <div id="section-letter" class="screen">
+        <div class="container scrollable">
+            <button class="back-btn" onclick="showNext('screen-main')">← Zurück</button>
+            <div id="envelope" class="envelope" onclick="handleLetter()">
+                <div class="flap"></div>
+                <div class="letter-content" id="letter-text">
+                    <h2 style="font-family: 'Dancing Script'; font-size: 1.8rem;">Alles gute zum Geburtstag</h2>
+                    <p style="font-size: 0.9rem; text-align: left; line-height: 1.5;">
+                        Ich kann nicht in Worte fassen wie sehr ich dich liebe, jeder Atemzug, jedes Herzklopfen, jeder Augenblick mit dir ist so einzigartig und schön. Ich liebe dich Tag ein Tag aus, von Sonnenaufgang bis Untergang, von Fajr bis Ishaa, von jetzt bis ans unendliche. Ich hoffe dass diese Geschenke dir eine Freude bereiten und dass du genauso glücklich mit mir bist wie ich es mit dir bin baby. Es ist zwar nicht so gut wie ein Buch (was eigentlich geplannt war) aber es kommt vom Herzen.<br><br>
+                        Vergiss niemals, dass ich dich immer lieben werde, dass ich dich immer unterstützen werde, dich immer verteidigen werde, dich immer zum lachen bringen werde, dass ich da bin wenn es dir nicht gut geht, dass ich da bin wenn es kein anderer ist, dass ich ohne dich nicht leben kann, dass ich ohne dich nicht atmen kann.<br><br>
+                        Du fragst dich wieso?<br>weil<br><b>Alle guten dinge sind Jana.</b><br>und wenn jana nicht da ist habe ich nix gutes im Leben.<br><br>ich liebe dich.
+                    </p>
+                </div>
+            </div>
+            <div id="love-bubble" class="bubble" style="display: none;">I love you</div>
+        </div>
+    </div>
+
+    <script>
+        let attempts = 0;
+
+        function showNext(id) {
+            // Verstecke alle Screens
+            const screens = document.getElementsByClassName('screen');
+            for (let i = 0; i < screens.length; i++) {
+                screens[i].classList.remove('active');
+            }
+            // Zeige den gewünschten Screen
+            document.getElementById(id).classList.add('active');
+        }
+
+        function checkCode() {
+            const input = document.getElementById('code-input').value;
+            if (input === "3607") {
+                showNext('screen-birthday');
+            } else {
+                attempts++;
+                document.getElementById('code-input').value = "";
+                document.getElementById('hint').innerText = (attempts >= 3) ? "Tipp: date of today" : "Falsch!";
+            }
+        }
+
+        function sayPlease() {
+            document.getElementById('please-text').innerText = "please";
+            document.getElementById('try-again-btn').style.display = 'inline-block';
+        }
+
+        function resetQuery() {
+            document.getElementById('please-text').innerText = "";
+            document.getElementById('try-again-btn').style.display = 'none';
+        }
+
+        function handleLetter() {
+            const letter = document.getElementById('letter-text');
+            const bubble = document.getElementById('love-bubble');
+            if (!letter.classList.contains('open')) {
+                letter.classList.add('open');
+                bubble.style.display = 'none';
+            } else {
+                letter.classList.remove('open');
+                bubble.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
