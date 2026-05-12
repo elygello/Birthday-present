@@ -21,7 +21,6 @@ body, html {
 
 .fancy-text { font-family: 'Dancing Script', cursive; color: #d81b60; font-size: 2.2rem; }
 
-/* STITCH & QUIZ STYLE */
 .stitch-char {
     width: 100px; height: auto; margin-bottom: 10px;
     animation: bounce 2s infinite ease-in-out;
@@ -63,7 +62,6 @@ input { width: 90%; padding: 12px; margin-bottom: 10px; border-radius: 12px; bor
 
 .error-text { color: #d81b60; font-size: 0.8rem; margin-top: 5px; min-height: 1rem; }
 
-/* BRIEF DESIGN */
 .envelope {
     width: 100%; min-height: 100px; background: #f8bbd0; margin-top: 20px;
     border-radius: 10px; position: relative; border: 1px solid #f48fb1; cursor: pointer;
@@ -82,5 +80,3 @@ input { width: 90%; padding: 12px; margin-bottom: 10px; border-radius: 12px; bor
     height: auto; padding: 20px; border: 1px solid #ddd; margin: 10px auto; 
     max-height: 400px; overflow-y: auto; box-sizing: border-box;
 }
-
-.bubble { background: #d81b60; color: white; padding: 10px 20px; border-radius: 20px; display: inline-block; margin-top: 15px; }
