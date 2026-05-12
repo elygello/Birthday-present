@@ -21,7 +21,23 @@ body, html {
 
 .fancy-text { font-family: 'Dancing Script', cursive; color: #d81b60; font-size: 2.2rem; }
 
-.quiz-q { font-size: 1.1rem; margin-bottom: 20px; font-weight: bold; color: #555; }
+/* STITCH & QUIZ STYLE */
+.stitch-char {
+    width: 100px; height: auto; margin-bottom: 10px;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.speech-bubble {
+    background: #f9f9f9; border: 2px solid #d81b60;
+    padding: 15px; border-radius: 15px; position: relative; margin-bottom: 20px;
+}
+
+.quiz-q { font-size: 1rem; margin: 0; font-weight: bold; color: #333; }
 
 .icon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 85%; }
 
@@ -41,21 +57,21 @@ input { width: 90%; padding: 12px; margin-bottom: 10px; border-radius: 12px; bor
 
 .gallery-img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
 
-.cat-gif { width: 160px; height: auto; border-radius: 15px; }
+.cat-gif { width: 150px; height: auto; border-radius: 15px; }
 
 .flower-display { font-size: 50px; margin: 15px 0; }
 
-.error-text { color: #d81b60; font-size: 0.9rem; margin-top: 5px; min-height: 1.2rem; }
+.error-text { color: #d81b60; font-size: 0.8rem; margin-top: 5px; min-height: 1rem; }
 
 /* BRIEF DESIGN */
 .envelope {
-    width: 100%; min-height: 120px; background: #f8bbd0; margin-top: 20px;
+    width: 100%; min-height: 100px; background: #f8bbd0; margin-top: 20px;
     border-radius: 10px; position: relative; border: 1px solid #f48fb1; cursor: pointer;
 }
 
 .flap {
-    width: 0; height: 0; border-left: 120px solid transparent; border-right: 120px solid transparent;
-    border-top: 70px solid #f48fb1; margin: 0 auto;
+    width: 0; height: 0; border-left: 110px solid transparent; border-right: 110px solid transparent;
+    border-top: 60px solid #f48fb1; margin: 0 auto;
 }
 
 .letter-content {
@@ -64,7 +80,7 @@ input { width: 90%; padding: 12px; margin-bottom: 10px; border-radius: 12px; bor
 
 .letter-content.open { 
     height: auto; padding: 20px; border: 1px solid #ddd; margin: 10px auto; 
-    max-height: 450px; overflow-y: auto; box-sizing: border-box;
+    max-height: 400px; overflow-y: auto; box-sizing: border-box;
 }
 
 .bubble { background: #d81b60; color: white; padding: 10px 20px; border-radius: 20px; display: inline-block; margin-top: 15px; }
